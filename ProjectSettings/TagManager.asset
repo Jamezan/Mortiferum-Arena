@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Spawner
   - Spider
+  - PlayerHitbox
+  - HealthText
+  - CurrencyText
+  - SpiderSpawner
+  - Waypoint
   layers:
   - Default
   - TransparentFX

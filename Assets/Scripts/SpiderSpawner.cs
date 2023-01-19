@@ -9,13 +9,9 @@ public class SpiderSpawner : MonoBehaviour
     [SerializeField]
     private GameObject SpiderType;
     [SerializeField]
-    private GameObject bossSpider;
-    [SerializeField]
     private int SpidersLeftToSpawn;
     [SerializeField]
     private int maxSpidersAliveAtOnce;
-    [SerializeField]
-    private int amountOfSpidersBeforeBoss;
     [SerializeField]
     private float originalSpawnTimer = 0f;
     [SerializeField]
@@ -24,8 +20,6 @@ public class SpiderSpawner : MonoBehaviour
     public int currentAliveSpiderCount;
     private GameObject gameManager;
     private GameObject[] waypointList;
-
-    private bool bossSpawned = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,12 +37,6 @@ public class SpiderSpawner : MonoBehaviour
             SpidersLeftToSpawn--;
             currentAliveSpiderCount++;
             StartCoroutine(spawnSpider(timerBetweenNewSpiders));
-        }
-
-        if(gameManager.GetComponent<GameManager>().spidersKilledThisRound >= amountOfSpidersBeforeBoss && bossSpawned == false)
-        {
-            bossSpawned = true;
-            Instantiate(bossSpider, GameObject.Find("BossWaypoint").transform.position, Quaternion.identity);
         }
     }
 
