@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     //Requires tag "CurrencyText"
     public int PlayerCurrency = 0;
     public static GameManager Instance;
-    TextMeshProUGUI CurrencyText;
+    public TextMeshProUGUI CurrencyText;
 
     public int currentLevel = 1;
 

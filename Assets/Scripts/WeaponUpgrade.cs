@@ -19,7 +19,7 @@ public class WeaponUpgrade : MonoBehaviour
     public string damageText;
 
     void OnStart() {
-        playerPoints = gameManager.GetComponent<GameManager>().PlayerCurrency;
+        playerPoints = int.Parse(GameObject.Find("GameManager").GetComponent<GameManager>().PlayerCurrency.ToString());
         playerDamage = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().damage;
         damageText = GameObject.Find("DamageBoostText").GetComponent<TextMeshProUGUI>().text;
     }
@@ -39,11 +39,12 @@ public class WeaponUpgrade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canUpgrade && Input.GetKeyDown(KeyCode.Return)) {
+        if(canUpgrade && Input.GetKeyDown(KeyCode.L)) {
+            playerPoints = int.Parse(GameObject.Find("GameManager").GetComponent<GameManager>().PlayerCurrency.ToString());
             if(playerPoints >= upgradeCost) {
-                playerPoints -= upgradeCost;
+                GameObject.Find("GameManager").GetComponent<GameManager>().ChangeCurrency(-500);
                 playerDamage = playerDamage * upgradeAmount;
-                damageText = "Damage: x" + playerDamage.ToString();
+                GameObject.Find("DamageBoostText").GetComponent<TextMeshProUGUI>().text = "Damage: x" + playerDamage.ToString();
             }
         }
     }
