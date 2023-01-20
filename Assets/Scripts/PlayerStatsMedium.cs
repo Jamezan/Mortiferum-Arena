@@ -5,7 +5,7 @@ using UnityEngine;
 using FPSControllerLPFP;
 using UnityEngine.SceneManagement;
 
-public class PlayerStats : MonoBehaviour
+public class PlayerStatsMedium : MonoBehaviour
 {
     //Requires a health text with tag "HealthText"
     [SerializeField]

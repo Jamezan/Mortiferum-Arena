@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SpiderAttackSystem : MonoBehaviour
+public class SpiderAttackSystemHard : MonoBehaviour
 {
     //Requirements for functionality: Player with tag "Player" & PlayerStats script
     //Bullet with "Bullet tag"
@@ -60,7 +60,7 @@ public class SpiderAttackSystem : MonoBehaviour
     {
         isBusy = true;
         enemyAgent.speed = 0;
-        player.GetComponent<PlayerStats>().TakeDamage(damage);
+        player.GetComponent<PlayerStatsHard>().TakeDamage(damage);
         anim.Play("attack1");
         yield return new WaitForSeconds(attackCooldown);
         setSpeed();
@@ -112,7 +112,7 @@ public class SpiderAttackSystem : MonoBehaviour
         if(collision.gameObject.tag == "Bullet")
         {
             Destroy(collision.gameObject);
-            currentHealth -= player.GetComponent<PlayerStats>().damage;
+            currentHealth -= player.GetComponent<PlayerStatsHard>().damage;
             setSpeed();
             damagedByPlayer = true;
             if(currentHealth <= 0)
