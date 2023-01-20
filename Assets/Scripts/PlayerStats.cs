@@ -17,6 +17,8 @@ public class PlayerStats : MonoBehaviour
     private GameObject gameManager;
     TextMeshProUGUI HealthText;
     TextMeshProUGUI ShopText;
+    public int currentPoints;
+    public int healCost = 50;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,16 @@ public class PlayerStats : MonoBehaviour
         currentHealth = health;
         HealthText = GameObject.FindGameObjectWithTag("HealthText").GetComponent<TextMeshProUGUI>();
         HealthText.text = "HP: " + currentHealth;
+        currentPoints = gameManager.GetComponent<GameManager>().PlayerCurrency;
+    }
 
+    void Update() {
+        if(Input.GetKeyDown(KeyCode.V)) {
+            if(currentPoints >= healCost && currentHealth < health) {
+                DrinkHPPotion();
+                gameManager.GetComponent<GameManager>().ChangeCurrency(-50);
+            }
+        }
     }
 
     public void TakeDamage(int enemydamage)
@@ -40,7 +51,7 @@ public class PlayerStats : MonoBehaviour
 
     public void DrinkHPPotion()
     {
-        currentHealth += 50;
+        currentHealth += 25;
         if (currentHealth > health)
         {
             currentHealth = health;
