@@ -9,7 +9,9 @@ public class SpiderSpawner : MonoBehaviour
     [SerializeField]
     private GameObject SpiderType;
     [SerializeField]
-    private int SpidersLeftToSpawn;
+    private GameObject SpeedSpider;
+    [SerializeField]
+    private GameObject SuicideSpider;
     [SerializeField]
     private int maxSpidersAliveAtOnce;
     [SerializeField]
@@ -32,9 +34,8 @@ public class SpiderSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentAliveSpiderCount < maxSpidersAliveAtOnce && SpidersLeftToSpawn > 0)
+        if (currentAliveSpiderCount < maxSpidersAliveAtOnce)
         {
-            SpidersLeftToSpawn--;
             currentAliveSpiderCount++;
             StartCoroutine(spawnSpider(timerBetweenNewSpiders));
         }

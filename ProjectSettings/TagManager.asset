@@ -11,6 +11,9 @@ TagManager:
   - CurrencyText
   - SpiderSpawner
   - Waypoint
+  - Bullet
+  - SpeedBoss
+  - PauseMenu
   layers:
   - Default
   - TransparentFX

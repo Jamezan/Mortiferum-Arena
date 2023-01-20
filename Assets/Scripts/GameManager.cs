@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     public int spidersKilledThisRound = 0;
     public int currencyCollectedThisRound = 0;
 
+    bool isPaused = false;
+    private GameObject pauseMenu;
+
     private void Awake()
     {
         if (Instance != null)
@@ -36,18 +39,32 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         CurrencyText = GameObject.FindGameObjectWithTag("CurrencyText").GetComponent<TextMeshProUGUI>();
+        pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
+        pauseMenu.SetActive(false);
+
     }
 
-    /*private void Update()
+    private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.P)) {
+            isPaused = !isPaused;
+            if(isPaused) {
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0;
+            }
 
-    }*/
+            else {
+                Time.timeScale = 1;
+                pauseMenu.SetActive(false);
+            }
+        }
+    }
 
     public void ChangeCurrency(int currency)
     {
         CurrencyText = GameObject.FindGameObjectWithTag("CurrencyText").GetComponent<TextMeshProUGUI>();
         PlayerCurrency += currency;
-        CurrencyText.text = "Currency: " + PlayerCurrency;
+        CurrencyText.text = PlayerCurrency.ToString();
     }
 
     public void resetRoundStats()

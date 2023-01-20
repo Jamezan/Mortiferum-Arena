@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using FPSControllerLPFP;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class PlayerStats : MonoBehaviour
 
         if (currentHealth < 0)
         {
-            gameManager.GetComponent<GameManager>().ClearAll();
+            SceneManager.LoadScene("GameOver");
         }
     }
 

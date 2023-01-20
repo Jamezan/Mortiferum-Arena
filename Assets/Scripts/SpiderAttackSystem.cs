@@ -15,8 +15,6 @@ public class SpiderAttackSystem : MonoBehaviour
     public bool targettingPlayer = false;
 
     [SerializeField]
-    GameObject gemDrop;
-    [SerializeField]
     private float attackCooldown = 1f;
     [SerializeField]
     private int health = 200;
@@ -34,6 +32,8 @@ public class SpiderAttackSystem : MonoBehaviour
     private bool WillNotMoveIfSafe = true;
     public bool damagedByPlayer;
     private bool isdead;
+    [SerializeField]
+    public int points = 10;
     // Start is called before the first frame update
     private void Start()
     {
@@ -78,9 +78,9 @@ public class SpiderAttackSystem : MonoBehaviour
         isdead = true;
         isBusy = true;
         targettingPlayer = false;
+        gameManager.GetComponent<GameManager>().ChangeCurrency(points);
         anim.Play("death2");
         yield return new WaitForSeconds(3);
-        Instantiate(gemDrop, this.gameObject.transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
 
@@ -91,9 +91,7 @@ public class SpiderAttackSystem : MonoBehaviour
             spiderSpawner.GetComponent<SpiderSpawner>().currentAliveSpiderCount--;
         }
 
-        if (damagedByPlayer == true)
-        {
-            gameManager.GetComponent<GameManager>().spidersKilled += 1;
+        if (damagedByPlayer == true) {
             gameManager.GetComponent<GameManager>().spidersKilledThisRound += 1;
         }
     }
