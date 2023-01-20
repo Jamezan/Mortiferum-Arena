@@ -88,7 +88,7 @@ public class SpiderAttackSystem : MonoBehaviour
     {
         if (spiderSpawner != null)
         {
-            spiderSpawner.GetComponent<SpiderSpawner>().currentAliveSpiderCount--;
+            spiderSpawner.GetComponent<SpiderSpawner>().currentAliveSpiderCount -= 1;
         }
 
         if (damagedByPlayer == true) {

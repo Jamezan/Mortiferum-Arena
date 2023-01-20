@@ -23,7 +23,7 @@ public class PlayerStats : MonoBehaviour
         gameManager = GameObject.Find("GameManager");
         currentHealth = health;
         HealthText = GameObject.FindGameObjectWithTag("HealthText").GetComponent<TextMeshProUGUI>();
-        HealthText.text = "HP: " + currentHealth;
+        HealthText.text = "HP: " + currentHealth * gameManager.GetComponent<GameManager>().playerHealthModifier;
 
     }
 
